@@ -1,0 +1,72 @@
+{
+  "activeBoardId": "board-1",
+  "theme": {
+    "type": "preset",
+    "presetId": "theme-midnight",
+    "customColor": "#0f172a"
+  },
+  "boards": [
+    {
+      "id": "board-1",
+      "name": "🚀 Projeto Principal",
+      "columns": [
+        { "id": "col-todo", "title": "To Do", "color": "#6366f1" },
+        { "id": "col-doing", "title": "Doing", "color": "#f59e0b" },
+        { "id": "col-done", "title": "Done", "color": "#10b981" }
+      ],
+      "tasks": [
+        {
+          "id": "task-1",
+          "columnId": "col-doing",
+          "title": "Desenvolver Interface do Kanban ✨",
+          "description": "Implementar layout responsivo em HTML, CSS e JS com suporte a drag and drop, emojis e salvamento em arquivo JSON! 🎨💻",
+          "priority": "high",
+          "createdAt": "2026-07-24T18:00:00.000Z",
+          "dueDate": "2026-07-25T12:00:00.000Z",
+          "tags": ["frontend", "ui/ux", "json"]
+        },
+        {
+          "id": "task-2",
+          "columnId": "col-todo",
+          "title": "Revisar Relatório de Desempenho 📊",
+          "description": "Verificar métricas do segundo trimestre e enviar feedback para a equipe de vendas. 📈🚀",
+          "priority": "urgent",
+          "createdAt": "2026-07-21T18:00:00.000Z",
+          "dueDate": "2026-07-24T15:00:00.000Z",
+          "tags": ["relatório", "urgente"]
+        },
+        {
+          "id": "task-3",
+          "columnId": "col-done",
+          "title": "Configurar Repositório Git 🛠️",
+          "description": "Criar branch main, adicionar .gitignore e configurar CI/CD inicial.",
+          "priority": "medium",
+          "createdAt": "2026-07-20T18:00:00.000Z",
+          "dueDate": "2026-07-22T18:00:00.000Z",
+          "tags": ["devops", "git"]
+        }
+      ]
+    },
+    {
+      "id": "board-2",
+      "name": "📱 App Mobile",
+      "columns": [
+        { "id": "col-todo-2", "title": "To Do", "color": "#6366f1" },
+        { "id": "col-doing-2", "title": "Doing", "color": "#f59e0b" },
+        { "id": "col-done-2", "title": "Done", "color": "#10b981" }
+      ],
+      "tasks": [
+        {
+          "id": "task-4",
+          "columnId": "col-todo-2",
+          "title": "Wireframes das Telas ✏️",
+          "description": "Desenhar protótipos de alta fidelidade no Figma.",
+          "priority": "low",
+          "createdAt": "2026-07-24T20:00:00.000Z",
+          "dueDate": "2026-07-26T20:00:00.000Z",
+          "tags": ["figma", "design"]
+        }
+      ]
+    }
+  ]
+}

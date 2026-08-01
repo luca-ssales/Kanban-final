@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<!-- 
+  ===================================================================
+  LANDING PAGE - CURRÍCULO PROFISSIONAL DE LUCAS SALES CARNEIRO
+  ===================================================================
+  Desenvolvido com HTML5 Semântico, CSS3 e JavaScript Vanilla.
+  Estilização padronizada segundo diretrizes de fonte Arial, 
+  cantos arredondados de 5px e esquema de cores em Preto e Amarelo.
+  ===================================================================
+-->
+<html lang="pt-BR">
+<head>
+  <!-- Meta tags fundamentais para codificação de caracteres e suporte mobile -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio e Currículo Profissional de Lucas Sales Carneiro - Desenvolvedor Web e Estudante de Análise e Desenvolvimento de Sistemas (ADS).">
+  <meta name="author" content="Lucas Sales Carneiro">
+  
+  <title>Lucas Sales Carneiro | Desenvolvedor Web & ADS</title>
+  
+  <!-- Link para o arquivo externo de estilização CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       CABEÇALHO E NAVEGAÇÃO PRINCIPAL
+       =================================================================== -->
+  <header class="header-principal" id="header">
+    <div class="container header-container">
+      
+      <!-- Logotipo textual com iniciais estilizadas em amarelo e preto -->
+      <a href="#inicio" class="logo-link" title="Voltar ao início">
+        <span class="logo-avatar">LC</span>
+        <span class="logo-texto">Lucas Sales</span>
+      </a>
+
+      <!-- Botão hambúrguer para alternar menu em telas menores (Mobile) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu de Navegação">
+        <span class="linha-menu"></span>
+        <span class="linha-menu"></span>
+        <span class="linha-menu"></span>
+      </button>
+
+      <!-- Links de navegação suave entre as seções da página -->
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-lista">
+          <li><a href="#inicio" class="nav-link ativo">Início</a></li>
+          <li><a href="#perfil" class="nav-link">Sobre Mim</a></li>
+          <li><a href="#projetos" class="nav-link">Projetos</a></li>
+          <li><a href="#formacao" class="nav-link">Formação</a></li>
+          <li><a href="#experiencia" class="nav-link">Experiência</a></li>
+          <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+          <li><a href="#contato" class="nav-link btn-destaque-header">Contato</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================================
+         SEÇÃO HERO / APRESENTAÇÃO INICIAL
+         =================================================================== -->
+    <section class="secao-hero" id="inicio">
+      <div class="container hero-container">
+        
+        <!-- Conteúdo textual da seção Hero -->
+        <div class="hero-conteudo">
+          <!-- Badge indicativo de status profissional -->
+          <div class="badge-status">
+            <span class="ponto-status"></span>
+            Disponível para Estágio & Oportunidades
+          </div>
+          
+          <h1 class="hero-titulo">
+            Olá, eu sou <span class="destaque-amarelo">Lucas Sales Carneiro</span>
+          </h1>
+          
+          <!-- Subtítulo dinâmico com Efeito Máquina de Escrever -->
+          <h2 class="hero-subtitulo">
+            <span class="texto-maquina" id="textoMaquina"></span><span class="cursor-maquina">|</span>
+          </h2>
+          
+          <p class="hero-descricao">
+            Estudante de ADS na UNINOVE focado em desenvolvimento web full stack, sistemas de gestão com Python/Flask, bancos de dados SQL e soluções modernas com IA Generativa.
+          </p>
+
+          <!-- Métricas Rápidas para Recrutadores -->
+          <div class="grid-metricas-hero">
+            <div class="item-metrica">
+              <span class="numero-metrica">+3</span>
+              <span class="rotulo-metrica">Projetos Full Stack</span>
+            </div>
+            <div class="item-metrica">
+              <span class="numero-metrica">100%</span>
+              <span class="rotulo-metrica">Código Limpo</span>
+            </div>
+            <div class="item-metrica">
+              <span class="numero-metrica">2º Sem</span>
+              <span class="rotulo-metrica">ADS na UNINOVE</span>
+            </div>
+          </div>
+
+          <!-- Botões de Ação Principal (CTAs) -->
+          <div class="hero-acoes">
+            <a href="#projetos" class="btn btn-amarelo">Ver Meus Projetos &rarr;</a>
+            <a href="#contato" class="btn btn-outline">Falar Comigo</a>
+          </div>
+
+          <!-- Links para redes profissionais e contato rápido -->
+          <div class="hero-redes">
+            <a href="https://github.com/luca-ssales" target="_blank" rel="noopener noreferrer" class="link-rede" title="Perfil no GitHub">
+              <strong>GitHub</strong> /luca-ssales
+            </a>
+            <a href="https://linkedin.com/in/lucas-sales-236a67375" target="_blank" rel="noopener noreferrer" class="link-rede" title="Perfil no LinkedIn">
+              <strong>LinkedIn</strong> /lucas-sales
+            </a>
+          </div>
+        </div>
+
+        <!-- Terminal de Código Interativo Glassmorphic (Sem foto pessoal) -->
+        <div class="hero-grafico">
+          <div class="card-terminal-codigo">
+            <!-- Barra superior do terminal de desenvolvimento -->
+            <div class="terminal-cabecalho">
+              <div class="botoes-terminal">
+                <span class="botao-janela fechar"></span>
+                <span class="botao-janela minimizar"></span>
+                <span class="botao-janela expandir"></span>
+              </div>
+              <span class="titulo-terminal">lucas_carneiro.py</span>
+            </div>
+            <!-- Corpo do terminal com sintaxe destacada -->
+            <div class="terminal-corpo">
+              <pre><code><span class="code-kw">class</span> <span class="code-cls">Desenvolvedor</span>:
+  <span class="code-kw">def</span> <span class="code-fn">__init__</span>(self):
+    self.nome = <span class="code-str">"Lucas Sales Carneiro"</span>
+    self.curso = <span class="code-str">"ADS - UNINOVE (2º Sem)"</span>
+    self.stack = [<span class="code-str">"Python"</span>, <span class="code-str">"Flask"</span>, <span class="code-str">"JS"</span>, <span class="code-str">"SQL"</span>]
+    self.status = <span class="code-str">"Pronto para impactar!"</span>
+    
+  <span class="code-kw">def</span> <span class="code-fn">diferenciais</span>(self):
+    <span class="code-kw">return</span> [
+      <span class="code-str">"Aprendizado Rápido &amp; IA"</span>,
+      <span class="code-str">"Resolução de Problemas"</span>,
+      <span class="code-str">"Metodologia Ágil Scrum"</span>
+    ]
+
+dev = Desenvolvedor()
+<span class="code-cmd">print</span>(dev.status) <span class="code-cmt"># &gt;&gt; Ready to build!</span></code></pre>
+            </div>
+            <!-- Rodapé informativo do terminal -->
+            <div class="terminal-rodape">
+              <span class="status-terminal">● Python 3.11 | UTF-8</span>
+              <span class="tag-terminal-ia">IA Generativa Ready</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SEÇÃO PERFIL PROFISSIONAL
+         =================================================================== -->
+    <section class="secao secao-escura" id="perfil">
+      <div class="container">
+        
+        <div class="cabecalho-secao">
+          <span class="subtitulo-secao">Resumo</span>
+          <h2 class="titulo-secao">Perfil Profissional</h2>
+          <div class="divisor-amarelo"></div>
+        </div>
+
+        <div class="grid-perfil">
+          <!-- Texto de apresentação do perfil -->
+          <div class="cartao-perfil-texto">
+            <p>
+              Sou estudante de <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong> na Universidade Nove de Julho (UNINOVE), atualmente no 2º semestre. Possuo sólida base teórica e prática em desenvolvimento web utilizando <strong>Python, Flask, HTML, CSS e JavaScript</strong>.
+            </p>
+            <p>
+              Tenho experiência prática no desenvolvimento de sistemas web completos, incluindo integração com banco de dados, APIs RESTful e plataformas educacionais. Sou movido por desafios, possuo extrema facilidade para aprender novas tecnologias, resolver problemas e trabalhar em equipe de forma proativa.
+            </p>
+          </div>
+
+          <!-- Destaques rápidos sobre diferenciais profissionais -->
+          <div class="grid-diferenciais">
+            <div class="cartao-diferencial">
+              <div class="numero-diferencial">01</div>
+              <h3>Resolução de Problemas</h3>
+              <p>Foco na criação de sistemas práticos e otimizados para necessidades reais de negócios.</p>
+            </div>
+            
+            <div class="cartao-diferencial">
+              <div class="numero-diferencial">02</div>
+              <h3>Aprendizado Rápido</h3>
+              <p>Constante atualização em tecnologias emergentes, incluindo ferramentas modernas de IA Generativa.</p>
+            </div>
+
+            <div class="cartao-diferencial">
+              <div class="numero-diferencial">03</div>
+              <h3>Trabalho em Equipe</h3>
+              <p>Facilidade de comunicação interpessoal e adaptação às metodologias ágeis como Scrum.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SEÇÃO PROJETOS EM DESTAQUE
+         =================================================================== -->
+    <section class="secao" id="projetos">
+      <div class="container">
+        
+        <div class="cabecalho-secao">
+          <span class="subtitulo-secao">Portfólio</span>
+          <h2 class="titulo-secao">Projetos Desenvolvidos</h2>
+          <div class="divisor-amarelo"></div>
+        </div>
+
+        <!-- Grade de exibição dos cartões de projetos -->
+        <div class="grid-projetos">
+          
+          <!-- Projeto 1: AstroControl -->
+          <article class="cartao-projeto">
+            <div class="projeto-cabecalho">
+              <span class="badge-projeto">SaaS / Full Stack</span>
+              <h3 class="projeto-titulo">AstroControl</h3>
+              <p class="projeto-subtitulo">Sistema SaaS para Lojas Físicas</p>
+            </div>
+            <div class="projeto-corpo">
+              <p class="projeto-descricao">
+                Sistema de gestão completo para lojas físicas com foco no controle de produtos, fluxo de vendas, gerenciamento de estoque e cadastro de colaboradores. Desenvolvido com autenticação de usuários e integração com banco de dados.
+              </p>
+              <!-- Lista de tecnologias aplicadas no projeto -->
+              <div class="projeto-tecnologias">
+                <span class="tag-tech">Python</span>
+                <span class="tag-tech">Flask</span>
+                <span class="tag-tech">SQL</span>
+                <span class="tag-tech">HTML</span>
+                <span class="tag-tech">CSS</span>
+                <span class="tag-tech">JavaScript</span>
+              </div>
+            </div>
+            <div class="projeto-rodape">
+              <a href="https://astrocontrol-1.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-amarelo btn-bloco">
+                Acessar Aplicação &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Projeto 2: API de Previsão do Tempo -->
+          <article class="cartao-projeto">
+            <div class="projeto-cabecalho">
+              <span class="badge-projeto">Web App / API</span>
+              <h3 class="projeto-titulo">Previsão do Tempo</h3>
+              <p class="projeto-subtitulo">Aplicação Meteorológica em Tempo Real</p>
+            </div>
+            <div class="projeto-corpo">
+              <p class="projeto-descricao">
+                Aplicação web interativa que consome APIs meteorológicas para buscar e exibir informações climáticas em tempo real de forma simples, intuitiva e responsiva para o usuário.
+              </p>
+              <!-- Lista de tecnologias aplicadas no projeto -->
+              <div class="projeto-tecnologias">
+                <span class="tag-tech">HTML</span>
+                <span class="tag-tech">CSS</span>
+                <span class="tag-tech">JavaScript</span>
+                <span class="tag-tech">REST API</span>
+              </div>
+            </div>
+            <div class="projeto-rodape">
+              <a href="https://luca-ssales.github.io/Previsao/" target="_blank" rel="noopener noreferrer" class="btn btn-amarelo btn-bloco">
+                Ver Projeto Online &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Projeto 3: Gerador Automático de QR Code -->
+          <article class="cartao-projeto">
+            <div class="projeto-cabecalho">
+              <span class="badge-projeto">Ferramenta Utilitária</span>
+              <h3 class="projeto-titulo">Gerador de QR Code</h3>
+              <p class="projeto-subtitulo">Gerador Instantâneo de Códigos QR</p>
+            </div>
+            <div class="projeto-corpo">
+              <p class="projeto-descricao">
+                Ferramenta web desenvolvida para a geração instantânea de QR Codes customizados a partir de textos e links digitados pelo usuário, com foco em praticidade e utilidade imediata.
+              </p>
+              <!-- Lista de tecnologias aplicadas no projeto -->
+              <div class="projeto-tecnologias">
+                <span class="tag-tech">HTML</span>
+                <span class="tag-tech">CSS</span>
+                <span class="tag-tech">JavaScript</span>
+              </div>
+            </div>
+            <div class="projeto-rodape">
+              <a href="https://luca-ssales.github.io/Robo-QR/" target="_blank" rel="noopener noreferrer" class="btn btn-amarelo btn-bloco">
+                Usar Ferramenta &rarr;
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SEÇÃO FORMAÇÃO ACADÊMICA E CURSOS
+         =================================================================== -->
+    <section class="secao secao-escura" id="formacao">
+      <div class="container">
+        
+        <div class="cabecalho-secao">
+          <span class="subtitulo-secao">Educação</span>
+          <h2 class="titulo-secao">Formação & Certificações</h2>
+          <div class="divisor-amarelo"></div>
+        </div>
+
+        <div class="grid-duplo-formacao">
+          
+          <!-- Coluna 1: Formação Acadêmica Gradual -->
+          <div class="bloco-linha-tempo">
+            <h3 class="titulo-bloco-formacao">Graduação e Ensino Técnico</h3>
+            
+            <div class="linha-tempo">
+              
+              <!-- Item 1: ADS -->
+              <div class="item-linha-tempo">
+                <div class="marcador-linha"></div>
+                <div class="conteudo-linha">
+                  <span class="periodo-tag">Em andamento (2º Semestre)</span>
+                  <h4 class="curso-titulo">Análise e Desenvolvimento de Sistemas (ADS)</h4>
+                  <p class="instituicao-nome">Universidade Nove de Julho (UNINOVE)</p>
+                  <p class="descricao-item-linha">Foco em engenharia de software, desenvolvimento web, estruturas de dados e arquitetura de sistemas.</p>
+                </div>
+              </div>
+
+              <!-- Item 2: Técnico em Administração -->
+              <div class="item-linha-tempo">
+                <div class="marcador-linha"></div>
+                <div class="conteudo-linha">
+                  <span class="periodo-tag">Conclusão: Dezembro / 2025</span>
+                  <h4 class="curso-titulo">Técnico em Administração Integrado ao Ensino Médio</h4>
+                  <p class="instituicao-nome">E.E. Maria Leoni</p>
+                  <p class="descricao-item-linha">Capacitação em gestão de processos, logística, organização empresarial e controle financeiro.</p>
+                </div>
+              </div>
+
+              <!-- Item 3: Curso de Espanhol -->
+              <div class="item-linha-tempo">
+                <div class="marcador-linha"></div>
+                <div class="conteudo-linha">
+                  <span class="periodo-tag">Conclusão: Dezembro / 2025</span>
+                  <h4 class="curso-titulo">Curso de Espanhol</h4>
+                  <p class="instituicao-nome">E.E. Padre Conrado</p>
+                  <p class="descricao-item-linha">Desenvolvimento de fluência e comunicação intermediária na língua espanhola.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Coluna 2: Cursos de Especialização SENAI -->
+          <div class="bloco-certificacoes">
+            <h3 class="titulo-bloco-formacao">Certificações SENAI</h3>
+            
+            <div class="cartao-certificacao">
+              <div class="horas-tag">60 horas</div>
+              <h4>Programação em Python</h4>
+              <p class="emissor-certificacao">SENAI Hermenegildo Campos de Almeida</p>
+              <p class="detalhes-certificacao">Estrutura de dados, sintaxe avançada, orientação a objetos e lógica aplicada.</p>
+            </div>
+
+            <div class="cartao-certificacao">
+              <div class="horas-tag">40 horas</div>
+              <h4>Programação com Inteligência Artificial Generativa</h4>
+              <p class="emissor-certificacao">SENAI Hermenegildo Campos de Almeida</p>
+              <p class="detalhes-certificacao">Uso prático de IAs generativas no auxílio ao desenvolvimento de código e otimização de sistemas.</p>
+            </div>
+
+            <div class="cartao-certificacao">
+              <div class="horas-tag">40 horas</div>
+              <h4>Desenvolvimento de Aplicações com IA Generativa (Google Antigravity)</h4>
+              <p class="emissor-certificacao">SENAI Hermenegildo Campos de Almeida</p>
+              <p class="detalhes-certificacao">Criação de soluções avançadas com integração do ecossistema Google Antigravity e plataformas de IA.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SEÇÃO EXPERIÊNCIA PROFISSIONAL
+         =================================================================== -->
+    <section class="secao" id="experiencia">
+      <div class="container">
+        
+        <div class="cabecalho-secao">
+          <span class="subtitulo-secao">Histórico</span>
+          <h2 class="titulo-secao">Experiência Profissional</h2>
+          <div class="divisor-amarelo"></div>
+        </div>
+
+        <div class="cartao-experiencia">
+          <div class="experiencia-cabecalho">
+            <div>
+              <h3 class="cargo-titulo">Atendimento e Logística E-commerce (Mercado Livre e Shopee)</h3>
+              <p class="empresa-nome">Trabalho Autônomo</p>
+            </div>
+            <span class="periodo-badge">2020 – Atual</span>
+          </div>
+
+          <div class="experiencia-corpo">
+            <p class="experiencia-resumo">
+              Gestão operacional independente de vendas em marketplaces líderes do mercado, atuando em todas as etapas da cadeia logística e de atendimento ao cliente.
+            </p>
+            <!-- Lista de responsabilidades operacionais -->
+            <ul class="lista-responsabilidades">
+              <li>Atendimento direto ao cliente com foco na solução rápida e eficaz de problemas;</li>
+              <li>Controle rigoroso de pedidos, gestão de estoque e organização de dados operacionais;</li>
+              <li>Utilização de planilhas e sistemas de controle para acompanhamento de vendas e faturamento;</li>
+              <li>Análise contínua de dados básicos para otimização do catálogo de produtos e resultados;</li>
+              <li>Padronização e melhoria contínua dos processos de embalagem e despacho;</li>
+              <li>Comunicação transparente e suporte ao cliente em plataformas digitais de e-commerce.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SEÇÃO HABILIDADES, TECNOLOGIAS E COMPETÊNCIAS
+         =================================================================== -->
+    <section class="secao secao-escura" id="habilidades">
+      <div class="container">
+        
+        <div class="cabecalho-secao">
+          <span class="subtitulo-secao">Hard & Soft Skills</span>
+          <h2 class="titulo-secao">Conhecimentos Técnicos & Competências</h2>
+          <div class="divisor-amarelo"></div>
+        </div>
+
+        <!-- Subtítulo e Grade Visual de Ícones de Tecnologias -->
+        <h3 class="subtitulo-grid-tech">Tecnologias Principais</h3>
+        
+        <div class="grid-icones-tech">
+          
+          <!-- Ícone Oficial: Python -->
+          <div class="cartao-icone-tech" title="Linguagem Python">
+            <div class="container-svg-tech">
+              <svg viewBox="0 0 24 24" width="42" height="42" fill="none">
+                <path d="M11.927 2.007c-4.49 0-4.2 1.947-4.2 1.947l.006 2.019h4.257v.606H6.012s-2.012.23-2.012 4.468c0 4.239 1.751 4.316 1.751 4.316h1.047v-1.472c0-1.688 1.442-2.99 3.13-2.99h4.25c1.407 0 2.535-1.127 2.535-2.534V5.973c0-1.407-1.21-2.52-2.617-2.527h-2.169zm-1.89 1.34a.787.787 0 1 1 0 1.574.787.787 0 0 1 0-1.574z" fill="#3776AB"/>
+                <path d="M12.073 21.993c4.49 0 4.2-1.947 4.2-1.947l-.006-2.019h-4.257v-.606h5.978s2.012-.23 2.012-4.468c0-4.239-1.751-4.316-1.751-4.316h-1.047v1.472c0 1.688-1.442 2.99-3.13 2.99h-4.25c-1.407 0-2.535 1.127-2.535 2.534v2.383c0 1.407 1.21 2.52 2.617 2.527h2.169zm1.89-1.34a.787.787 0 1 1 0-1.574.787.787 0 0 1 0 1.574z" fill="#FFD43B"/>
+              </svg>
+            </div>
+            <span class="nome-tech-icone">Python</span>
+            <span class="categoria-tech-icone">Backend</span>
+          </div>
+
+          <!-- Ícone Oficial: Flask -->
+          <div class="cartao-icone-tech" title="Framework Flask">
+            <div class="container-svg-tech">
+              <svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 2v7.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9.5V2"/>
+                <path d="M8.5 2h7"/>
+                <path d="M7 16h10"/>
+              </svg>
+            </div>
+            <span class="nome-tech-icone">Flask</span>
+            <span class="categoria-tech-icone">Framework</span>
+          </div>
+
+          <!-- Ícone Oficial: HTML5 -->
+          <div class="cartao-icone-tech" title="HTML5 Semântico">
+            <div class="container-svg-tech">
+              <svg viewBox="0 0 24 24" width="42" height="42" fill="none">
+                <path d="M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0z" fill="#E34F26"/>
+                <path d="M12 2.18v19.67l6.634-1.888 1.547-17.782H12z" fill="#EF652A"/>
+                <path d="M12 9.75H8.531l-.232-2.718h7.404l.236-2.679H5.414l.7 8.073H12v-2.676zm0 6.222l-2.889-.781-.184-2.072H6.516l.36 4.382 5.124 1.403V15.972z" fill="#FFFFFF"/>
+                <path d="M12 9.75v2.676h3.407l-.341 3.8-2.888.781v2.709l5.084-1.393.684-7.669H12z" fill="#ECECEC"/>
+              </svg>
+            </div>
+            <span class="nome-tech-icone">HTML5</span>
+            <span class="categoria-tech-icone">Estrutura</span>
+          </div>
+
+          <!-- Ícone Oficial: CSS3 -->
+          <div class="cartao-icone-tech" title="CSS3 Moderno">
+            <div class="container-svg-tech">
+              <svg viewBox="0 0 24 24" width="42" height="42" fill="none">
+                <path d="M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0z" fill="#1572B6"/>
+                <path d="M12 2.18v19.67l6.634-1.888 1.547-17.782H12z" fill="#33A9DC"/>
+                <path d="M12 9.75H8.531l-.232-2.718h7.404l.236-2.679H5.414l.232 2.679h7.457l-.232 2.715H5.878l.232 2.679H12V9.75z" fill="#FFFFFF"/>
+                <path d="M12 15.972l-2.889-.781-.184-2.072H6.516l.36 4.382 5.124 1.403v-2.932z" fill="#FFFFFF"/>
+                <path d="M12 9.75v2.679h3.816l-.341 3.8-2.888.781v2.709l5.084-1.393.684-7.669H12z" fill="#ECECEC"/>
+              </svg>
+            </div>
+            <span class="nome-tech-icone">CSS3</span>
+            <span class="categoria-tech-icone">Estilização</span>
+          </div>
+
+          <!-- Ícone Oficial: JavaScript -->
+          <div class="cartao-icone-tech" title="JavaScript Vanilla / ES6">
+            <div class="container-svg-tech">
+              <svg viewBox="0 0 24 24" width="42" height="42">
+                <rect width="24" height="24" rx="4" fill="#F7DF1E"/>
+                <path d="M12 18.5c.8 0 1.5-.4 1.8-1l-1.3-.8c-.2.3-.4.5-.8.5-.6 0-1-.4-1-1.2V11h-1.6v5.2c0 1.5 1 2.3 2.9 2.3zm5.6.2c1.7 0 2.8-.9 2.8-2.4 0-1.4-.9-2-2.2-2.5l-.5-.2c-.6-.2-.9-.4-.9-.8 0-.4.4-.7 1-.7.6 0 1 .2 1.2.6l1.3-.8c-.5-.8-1.3-1.2-2.5-1.2-1.6 0-2.6.9-2.6 2.3 0 1.3.8 1.9 2 2.3l.5.2c.7.3 1.1.5 1.1.9 0 .5-.4.8-1.1.8-.8 0-1.3-.4-1.6-1l-1.3.8c.5 1 1.6 1.7 2.8 1.7z" fill="#000000"/>
+              </svg>
+            </div>
+            <span class="nome-tech-icone">JavaScript</span>
+            <span class="categoria-tech-icone">Linguagem</span>
+          </div>
+
+          <!-- Ícone Oficial: Supabase -->
+          <div class="cartao-icone-tech" title="Supabase & SQL">
+            <div class="container-svg-tech">
+              <svg viewBox="0 0 24 24" width="42" height="42" fill="none">
+                <path d="M13.35 2.082a.75.75 0 0 0-1.293.473l-.689 8.212H3.75a.75.75 0 0 0-.606 1.19l8.5 11.5a.75.75 0 0 0 1.293-.473l.689-8.212h7.618a.75.75 0 0 0 .606-1.19l-8.5-11.5z" fill="#3ECF8E"/>
+              </svg>
+            </div>
+            <span class="nome-tech-icone">Supabase</span>
+            <span class="categoria-tech-icone">Database</span>
+          </div>
+
+          <!-- Ícone Oficial: GitHub -->
+          <div class="cartao-icone-tech" title="GitHub & Git">
+            <div class="container-svg-tech">
+              <svg viewBox="0 0 24 24" width="42" height="42" fill="#FFFFFF">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </div>
+            <span class="nome-tech-icone">GitHub</span>
+            <span class="categoria-tech-icone">Controle Versão</span>
+          </div>
+
+          <!-- Ícone Oficial: Gemini / IA Generativa -->
+          <div class="cartao-icone-tech" title="Inteligência Artificial Generativa (Gemini)">
+            <div class="container-svg-tech">
+              <svg viewBox="0 0 24 24" width="42" height="42" fill="none">
+                <defs>
+                  <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#4285F4" />
+                    <stop offset="50%" stop-color="#9B51E0" />
+                    <stop offset="100%" stop-color="#00D2FF" />
+                  </linearGradient>
+                </defs>
+                <path d="M12 2C12 7.52 7.52 12 2 12C7.52 12 12 16.48 12 22C12 16.48 16.48 12 22 12C16.48 12 12 7.52 12 2Z" fill="url(#geminiGrad)"/>
+              </svg>
+            </div>
+            <span class="nome-tech-icone">IA Generativa</span>
+            <span class="categoria-tech-icone">Antigravity / Gemini</span>
+          </div>
+
+        </div>
+
+        <h3 class="subtitulo-grid-tech">Detalhamento por Categorias</h3>
+
+        <!-- Grade de Categorias Tecnológicas -->
+        <div class="grid-habilidades">
+          
+          <!-- Card: Programação & Web -->
+          <div class="cartao-habilidade">
+            <h3 class="habilidade-categoria">Programação & Web</h3>
+            <ul class="lista-skills-tags">
+              <li>Python</li>
+              <li>Flask</li>
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript (ES6+)</li>
+              <li>Lógica de Programação</li>
+            </ul>
+          </div>
+
+          <!-- Card: Banco de Dados & Infra -->
+          <div class="cartao-habilidade">
+            <h3 class="habilidade-categoria">Banco de Dados & Infra</h3>
+            <ul class="lista-skills-tags">
+              <li>SQL</li>
+              <li>Conceitos Supabase</li>
+              <li>Hospedagem no Render</li>
+              <li>GitHub Pages</li>
+            </ul>
+          </div>
+
+          <!-- Card: IAs & Ferramentas -->
+          <div class="cartao-habilidade">
+            <h3 class="habilidade-categoria">Ferramentas & IAs</h3>
+            <ul class="lista-skills-tags">
+              <li>Google Antigravity</li>
+              <li>ChatGPT</li>
+              <li>Codex</li>
+              <li>Claude Code</li>
+              <li>Gemini</li>
+              <li>Pacote Office (Básico)</li>
+            </ul>
+          </div>
+
+          <!-- Card: Metodologias & Conceitos -->
+          <div class="cartao-habilidade">
+            <h3 class="habilidade-categoria">Metodologias & Conceitos</h3>
+            <ul class="lista-skills-tags">
+              <li>Metodologia Scrum</li>
+              <li>Conceitos ITIL</li>
+              <li>Transações ACID</li>
+              <li>Conceitos CIDAL</li>
+            </ul>
+          </div>
+
+          <!-- Card: Idiomas -->
+          <div class="cartao-habilidade">
+            <h3 class="habilidade-categoria">Idiomas</h3>
+            <div class="item-idioma">
+              <strong>Inglês:</strong> Nível Básico
+            </div>
+            <div class="item-idioma">
+              <strong>Espanhol:</strong> Nível Intermediário
+            </div>
+          </div>
+
+          <!-- Card: Competências Pessoais -->
+          <div class="cartao-habilidade cartao-competencias-completas">
+            <h3 class="habilidade-categoria">Competências Pessoais</h3>
+            <ul class="lista-skills-tags">
+              <li>Raciocínio lógico</li>
+              <li>Aprendizado rápido</li>
+              <li>Resolução de problemas</li>
+              <li>Organização e foco</li>
+              <li>Trabalho em equipe</li>
+              <li>Comunicação interpessoal</li>
+              <li>Facilidade com tecnologia</li>
+              <li>Proatividade</li>
+              <li>Pensamento analítico</li>
+              <li>Adaptabilidade</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SEÇÃO DE CONTATO E LINKS RÁPIDOS
+         =================================================================== -->
+    <section class="secao" id="contato">
+      <div class="container">
+        
+        <div class="cabecalho-secao">
+          <span class="subtitulo-secao">Conectar</span>
+          <h2 class="titulo-secao">Entre em Contato</h2>
+          <div class="divisor-amarelo"></div>
+        </div>
+
+        <div class="cartao-contato-principal">
+          
+          <div class="contato-info">
+            <h3>Vamos conversar?</h3>
+            <p>Estou em busca de oportunidades para aplicar e expandir meus conhecimentos em desenvolvimento de software. Sinta-se à vontade para entrar em contato!</p>
+            
+            <div class="grid-meios-contato">
+              
+              <!-- Telefone / WhatsApp -->
+              <div class="item-contato-bloco">
+                <span class="rotulo-contato">Telefone / WhatsApp</span>
+                <div class="valor-contato-copia">
+                  <span id="textoTelefone">(11) 91771-1078</span>
+                  <button class="btn-copiar" onclick="copiarTexto('textoTelefone', 'Telefone copiado!')" title="Copiar telefone">Copiar</button>
+                </div>
+              </div>
+
+              <!-- E-mail -->
+              <div class="item-contato-bloco">
+                <span class="rotulo-contato">E-mail Profissional</span>
+                <div class="valor-contato-copia">
+                  <span id="textoEmail">ssales.luca@gmail.com</span>
+                  <button class="btn-copiar" onclick="copiarTexto('textoEmail', 'E-mail copiado!')" title="Copiar e-mail">Copiar</button>
+                </div>
+              </div>
+
+              <!-- LinkedIn -->
+              <div class="item-contato-bloco">
+                <span class="rotulo-contato">LinkedIn</span>
+                <a href="https://linkedin.com/in/lucas-sales-236a67375" target="_blank" rel="noopener noreferrer" class="link-externo-contato">
+                  linkedin.com/in/lucas-sales-236a67375 &nearr;
+                </a>
+              </div>
+
+              <!-- GitHub -->
+              <div class="item-contato-bloco">
+                <span class="rotulo-contato">GitHub</span>
+                <a href="https://github.com/luca-ssales" target="_blank" rel="noopener noreferrer" class="link-externo-contato">
+                  github.com/luca-ssales &nearr;
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================
+       RODAPÉ DA PÁGINA (FOOTER)
+       =================================================================== -->
+  <footer class="footer-principal">
+    <div class="container footer-container">
+      <div class="footer-logo">
+        <span class="logo-avatar">LC</span>
+        <span>Lucas Sales Carneiro &copy; 2026</span>
+      </div>
+      <p class="footer-creditos">
+        Desenvolvido com HTML5, CSS3 e JavaScript Vanilla | Tipografia Arial & Design Preto e Amarelo
+      </p>
+      <a href="#inicio" class="btn-voltar-topo" title="Voltar ao topo da página">&uarr; Topo</a>
+    </div>
+  </footer>
+
+  <!-- Notificação Flutuante de Cópia (Toast Notification) -->
+  <div class="toast-notificacao" id="toastNotificacao">Texto copiado!</div>
+
+  <!-- Arquivo de scripts JavaScript externos -->
+  <script src="script.js"></script>
+
+</body>
+</html>

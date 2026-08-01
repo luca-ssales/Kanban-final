@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KanbanFlow - Gerenciador de Tarefas Inteligente</title>
+  
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="favcon.png" type="image/x-icon">
+  
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-midnight">
+  
+  <!-- Outer Window Frame Container (Claymorphic / Soft Rounded Style) -->
+  <div class="outer-frame-wrapper">
+    <div id="app" class="app-container">
+      
+      <!-- Top Navigation Bar -->
+      <header class="app-header">
+        <div class="header-left">
+          <div class="logo">
+            <div class="logo-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="3"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/></svg>
+            </div>
+            <span class="logo-text">Kanban<span class="highlight">Flow</span></span>
+          </div>
+
+          <!-- Board Selector & Switcher -->
+          <div class="board-selector-wrapper">
+            <div class="custom-select" id="boardSelectDropdown">
+              <button type="button" class="select-trigger" id="currentBoardBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span id="currentBoardName">Projeto Principal</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="select-options" id="boardSelectOptions">
+                <!-- Board items populated dynamically -->
+                <div class="options-divider"></div>
+                <button type="button" class="option-btn add-board-opt" id="openNewBoardModalBtn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                  Criar Novo Quadro
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls & Actions -->
+        <div class="header-center">
+          <div class="search-box">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="searchInput" placeholder="Buscar tarefas..." autocomplete="off">
+            <button type="button" id="clearSearchBtn" class="clear-search hidden" title="Limpar busca">&times;</button>
+          </div>
+
+          <div class="filter-group">
+            <select id="priorityFilterSelect" class="styled-select" title="Filtrar por prioridade">
+              <option value="all">Todas as Prioridades</option>
+              <option value="urgent">🔴 Urgente</option>
+              <option value="high">🟠 Alta</option>
+              <option value="medium">🟡 Média</option>
+              <option value="low">🟢 Baixa</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- QUICK LIGHT / DARK MODE TOGGLE SWITCH -->
+          <div class="theme-toggle-switch" id="modeToggleBtn" title="Alternar Modo Claro / Escuro">
+            <button type="button" class="toggle-pill-btn active" id="darkModePill">
+              <span class="mode-icon">🌙</span> Dark
+            </button>
+            <button type="button" class="toggle-pill-btn" id="lightModePill">
+              <span class="mode-icon">☀️</span> Light
+            </button>
+          </div>
+
+          <!-- Theme Customizer Modal Trigger -->
+          <button type="button" id="openThemeModalBtn" class="icon-btn" title="Personalizar Cores">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.7-.75 1.7-1.68 0-.44-.17-.86-.44-1.18-.27-.32-.44-.75-.44-1.18 0-.93.75-1.68 1.68-1.68h2.5c3.31 0 6-2.69 6-6 0-4.96-4.49-9-10-9z"/></svg>
+            <span class="btn-label">Cores</span>
+          </button>
+
+          <!-- Export/Import JSON Data -->
+          <button type="button" id="openExportModalBtn" class="icon-btn" title="Exportar ou Importar dados JSON">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+          </button>
+
+          <!-- New Task Button -->
+          <button type="button" id="openNewTaskModalBtn" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <span>Nova Tarefa</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Sub-header Bar (Board Controls & Stats) -->
+      <div class="board-subheader">
+        <div class="board-title-group">
+          <h1 id="boardTitleDisplay" class="board-title">Projeto Principal</h1>
+          <button type="button" id="editBoardBtn" class="icon-btn-sm" title="Editar nome do quadro">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+          </button>
+        </div>
+
+        <div class="board-stats">
+          <div class="stat-pill" id="totalTasksStat" title="Total de Tarefas">
+            <span class="stat-icon">📋</span>
+            <span class="stat-value">0 tarefas</span>
+          </div>
+          <div class="stat-pill stat-overdue" id="overdueTasksStat" title="Tarefas Atrasadas">
+            <span class="stat-icon">⚠️</span>
+            <span class="stat-value">0 atrasadas</span>
+          </div>
+          <div class="stat-pill stat-completed" id="completedTasksStat" title="Taxa de Conclusão">
+            <span class="stat-icon">🎯</span>
+            <span class="stat-value">0% concluídas</span>
+          </div>
+        </div>
+
+        <div class="board-actions">
+          <button type="button" id="openNewColumnModalBtn" class="btn btn-secondary btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            Nova Coluna
+          </button>
+          <button type="button" id="deleteBoardBtn" class="btn btn-danger-outline btn-sm" title="Excluir quadro atual">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Kanban Canvas (Horizontal Scrolling Column List) -->
+      <main class="kanban-canvas" id="kanbanCanvas">
+        <!-- Columns rendered dynamically by JavaScript -->
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- TASK MODAL (Create & Edit) -->
+  <div class="modal-backdrop hidden" id="taskModal">
+    <div class="modal-dialog modal-md">
+      <div class="modal-header">
+        <h3 id="taskModalTitle" class="modal-title">Nova Tarefa</h3>
+        <button type="button" class="close-modal-btn" data-close="taskModal">&times;</button>
+      </div>
+      <form id="taskForm" class="modal-body">
+        <input type="hidden" id="taskIdInput" value="">
+        
+        <div class="form-group">
+          <label for="taskTitleInput" class="form-label">Título da Tarefa <span class="required">*</span></label>
+          <input type="text" id="taskTitleInput" class="form-control" placeholder="Ex: Criar componente de Login" required maxlength="100">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="taskColumnSelect" class="form-label">Coluna</label>
+            <select id="taskColumnSelect" class="form-control styled-select">
+              <!-- Columns loaded dynamically -->
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label for="taskPrioritySelect" class="form-label">Prioridade</label>
+            <select id="taskPrioritySelect" class="form-control styled-select">
+              <option value="low">🟢 Baixa</option>
+              <option value="medium" selected>🟡 Média</option>
+              <option value="high">🟠 Alta</option>
+              <option value="urgent">🔴 Urgente</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="taskDueDateInput" class="form-label">Prazo (Data / Hora Limite)</label>
+            <input type="datetime-local" id="taskDueDateInput" class="form-control">
+          </div>
+          <div class="form-group col-6">
+            <label for="taskTagsInput" class="form-label">Tags / Categoria (separadas por vírgula)</label>
+            <input type="text" id="taskTagsInput" class="form-control" placeholder="Ex: frontend, bug, api">
+          </div>
+        </div>
+
+        <div class="form-group description-group">
+          <div class="label-with-action">
+            <label for="taskDescInput" class="form-label">Descrição</label>
+            <button type="button" id="emojiPickerBtn" class="emoji-trigger-btn" title="Inserir Emoji">
+              <span>😀</span> Escolher Emoji
+            </button>
+          </div>
+          <textarea id="taskDescInput" class="form-control" rows="4" placeholder="Descreva os detalhes da tarefa... Use o botão de emoji acima!"></textarea>
+          
+          <!-- Emoji Selector Popover -->
+          <div class="emoji-popover hidden" id="emojiPopover">
+            <div class="emoji-popover-header">
+              <input type="text" id="emojiSearchInput" placeholder="Buscar emoji..." class="emoji-search-input">
+              <button type="button" class="emoji-popover-close" id="closeEmojiPopoverBtn">&times;</button>
+            </div>
+            <div class="emoji-categories" id="emojiCategories">
+              <button type="button" class="emoji-cat-tab active" data-cat="smileys" title="Sorrisos">😀</button>
+              <button type="button" class="emoji-cat-tab" data-cat="gestures" title="Gestos">👍</button>
+              <button type="button" class="emoji-cat-tab" data-cat="work" title="Trabalho">💼</button>
+              <button type="button" class="emoji-cat-tab" data-cat="symbols" title="Símbolos">🔥</button>
+              <button type="button" class="emoji-cat-tab" data-cat="objects" title="Objetos">🎯</button>
+            </div>
+            <div class="emoji-grid" id="emojiGrid">
+              <!-- Emoji items loaded via JS -->
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close="taskModal">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="saveTaskBtn">Salvar Tarefa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- NEW/EDIT BOARD MODAL -->
+  <div class="modal-backdrop hidden" id="boardModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h3 id="boardModalTitle" class="modal-title">Novo Quadro</h3>
+        <button type="button" class="close-modal-btn" data-close="boardModal">&times;</button>
+      </div>
+      <form id="boardForm" class="modal-body">
+        <input type="hidden" id="boardIdInput" value="">
+        <div class="form-group">
+          <label for="boardNameInput" class="form-label">Nome do Quadro <span class="required">*</span></label>
+          <input type="text" id="boardNameInput" class="form-control" placeholder="Ex: Projeto Redesign 2026" required maxlength="50">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close="boardModal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar Quadro</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- NEW/EDIT COLUMN MODAL -->
+  <div class="modal-backdrop hidden" id="columnModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h3 id="columnModalTitle" class="modal-title">Nova Coluna</h3>
+        <button type="button" class="close-modal-btn" data-close="columnModal">&times;</button>
+      </div>
+      <form id="columnForm" class="modal-body">
+        <input type="hidden" id="columnIdInput" value="">
+        <div class="form-group">
+          <label for="columnNameInput" class="form-label">Nome da Coluna <span class="required">*</span></label>
+          <input type="text" id="columnNameInput" class="form-control" placeholder="Ex: Em Validação" required maxlength="30">
+        </div>
+        <div class="form-group">
+          <label for="columnColorInput" class="form-label">Cor de Destaque da Coluna</label>
+          <div class="color-picker-group">
+            <input type="color" id="columnColorInput" class="color-picker-input" value="#6c5ce7">
+            <span class="color-value-preview" id="columnColorPreview">#6c5ce7</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close="columnModal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar Coluna</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- THEME & BACKGROUND CUSTOMIZATION MODAL -->
+  <div class="modal-backdrop hidden" id="themeModal">
+    <div class="modal-dialog modal-md">
+      <div class="modal-header">
+        <h3 class="modal-title">Personalizar Tema e Cores</h3>
+        <button type="button" class="close-modal-btn" data-close="themeModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="theme-section">
+          <h4>Temas Predefinidos</h4>
+          <div class="theme-presets-grid" id="themePresetsGrid">
+            <button type="button" class="theme-preset-card active" data-theme="theme-midnight">
+              <div class="preset-preview preview-midnight"></div>
+              <span>Midnight Blue (Escuro)</span>
+            </button>
+            <button type="button" class="theme-preset-card" data-theme="theme-light">
+              <div class="preset-preview preview-light"></div>
+              <span>Pastel Dashboard (Claro)</span>
+            </button>
+            <button type="button" class="theme-preset-card" data-theme="theme-purple">
+              <div class="preset-preview preview-purple"></div>
+              <span>Velvet Purple</span>
+            </button>
+            <button type="button" class="theme-preset-card" data-theme="theme-cyber">
+              <div class="preset-preview preview-cyber"></div>
+              <span>Cyber Neon</span>
+            </button>
+            <button type="button" class="theme-preset-card" data-theme="theme-emerald">
+              <div class="preset-preview preview-emerald"></div>
+              <span>Emerald Forest</span>
+            </button>
+            <button type="button" class="theme-preset-card" data-theme="theme-sunset">
+              <div class="preset-preview preview-sunset"></div>
+              <span>Sunset Red</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="theme-section custom-color-section">
+          <h4>Cor de Fundo Customizada</h4>
+          <div class="custom-bg-controls">
+            <div class="form-group">
+              <label for="customBgColorInput" class="form-label">Selecione uma Cor de Fundo</label>
+              <div class="color-picker-group">
+                <input type="color" id="customBgColorInput" class="color-picker-input" value="#6c5ce7">
+                <input type="text" id="customBgHexInput" class="form-control hex-input" value="#6c5ce7">
+                <button type="button" id="applyCustomBgBtn" class="btn btn-secondary">Aplicar Cor</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close="themeModal">Concluído</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPORT / IMPORT MODAL -->
+  <div class="modal-backdrop hidden" id="exportModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title">Backup de Dados JSON</h3>
+        <button type="button" class="close-modal-btn" data-close="exportModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">Baixe um arquivo kanban_data.json com todos os seus quadros e tarefas ou restaure um backup anterior.</p>
+        <div class="backup-actions">
+          <button type="button" id="exportDataBtn" class="btn btn-secondary btn-block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            Exportar JSON
+          </button>
+          
+          <label for="importFileInput" class="btn btn-outline btn-block file-input-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+            Importar JSON
+          </label>
+          <input type="file" id="importFileInput" accept=".json" class="hidden">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRM ACTION MODAL -->
+  <div class="modal-backdrop hidden" id="confirmModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h3 id="confirmModalTitle" class="modal-title">Confirmar Ação</h3>
+        <button type="button" class="close-modal-btn" data-close="confirmModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmModalText">Tem certeza que deseja realizar esta ação?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" data-close="confirmModal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmModalOkBtn">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript Entry Point -->
+  <script src="app.js"></script>
+</body>
+</html>

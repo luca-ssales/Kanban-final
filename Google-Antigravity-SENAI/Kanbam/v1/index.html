@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KanbanFlow - Gerenciador de Tarefas Inteligente</title>
+
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" href="favcon.png" type="image/x-icon">
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="theme-midnight">
+
+  <!-- Outer Window Frame Container (Claymorphic / Soft Rounded Style) -->
+  <div class="outer-frame-wrapper">
+    <div id="app" class="app-container app-with-sidebar">
+
+      <!-- LEFT SIDEBAR DOCK (VERTICAL ICON RAIL) -->
+      <aside class="sidebar-rail" id="sidebarRail">
+        <div class="sidebar-top">
+          <button type="button" class="sidebar-icon-btn active" id="sideNavGridBtn" title="Início / Grid">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="2"/><rect width="7" height="7" x="14" y="3" rx="2"/><rect width="7" height="7" x="14" y="14" rx="2"/><rect width="7" height="7" x="3" y="14" rx="2"/></svg>
+          </button>
+          <button type="button" class="sidebar-icon-btn" id="sideNavDashBtn" title="Dashboard">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+          </button>
+
+        </div>
+
+        <div class="sidebar-mid">
+          <button type="button" class="sidebar-icon-btn" id="sideNavFilesBtn" title="Exportar / Importar JSON">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+          </button>
+          <button type="button" class="sidebar-icon-btn" id="sideNavHistoryBtn" title="Histórico">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </button>
+        </div>
+
+        <div class="sidebar-bottom">
+          <button type="button" id="openThemeModalBtn" class="sidebar-icon-btn" title="Personalizar Cores">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </button>
+          <button type="button" id="openExportModalBtn" class="sidebar-icon-btn" title="Exportar / Importar JSON">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN WRAPPER (HEADER + CONTENT) -->
+      <div class="main-content-wrapper">
+
+        <!-- TOP NAVIGATION BAR WITH PILL TABS & KANBAN CONTROLS -->
+        <header class="app-header">
+          <div class="header-left">
+            <div class="logo">
+              <div class="logo-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="3"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/></svg>
+              </div>
+              <span class="logo-text">Kanban<span class="highlight">Flow</span></span>
+            </div>
+          </div>
+
+          <!-- CENTER FLOATING PILL NAVBAR -->
+          <div class="header-center">
+            <nav class="pill-nav-bar">
+              <button type="button" class="pill-nav-link active" id="navKanbanBtn">Quadro Kanban</button>
+              <button type="button" class="pill-nav-link" id="navDashboardBtn">Dashboard</button>
+              <button type="button" class="pill-nav-link" id="navReportsBtn">Relatórios</button>
+              <button type="button" class="pill-nav-link" id="navHistoryBtn">Histórico</button>
+            </nav>
+          </div>
+
+          <!-- RIGHT ACTIONS & KANBAN CONTROLS (MATCHING IMAGE 2) -->
+          <div class="header-right">
+            <!-- Board Selector Dropdown -->
+            <div class="custom-select" id="boardSelectDropdown">
+              <button type="button" class="select-trigger" id="currentBoardBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span id="currentBoardName">🚀 Projeto Principal</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="select-options" id="boardSelectOptions">
+                <div class="options-divider"></div>
+                <button type="button" class="option-btn add-board-opt" id="openNewBoardModalBtn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                  Criar Novo Quadro
+                </button>
+              </div>
+            </div>
+
+            <!-- Search Trigger -->
+            <div class="search-box">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="text" id="searchInput" placeholder="Buscar tarefas..." autocomplete="off">
+              <button type="button" id="clearSearchBtn" class="clear-search hidden" title="Limpar busca">&times;</button>
+            </div>
+
+            <!-- Priority Filter Dropdown -->
+            <select id="priorityFilterSelect" class="header-select-pill" title="Filtrar por prioridade">
+              <option value="all">Todas as Prioridades</option>
+              <option value="urgent">🔴 Urgente</option>
+              <option value="high">🟠 Alta</option>
+              <option value="medium">🟡 Média</option>
+              <option value="low">🟢 Baixa</option>
+            </select>
+
+            <!-- Light / Dark Toggle Pills -->
+            <div class="theme-toggle-pill">
+              <button type="button" id="darkModePill" class="toggle-pill-btn" title="Modo Escuro">🌙 Dark</button>
+              <button type="button" id="lightModePill" class="toggle-pill-btn active" title="Modo Claro">☀️ Light</button>
+            </div>
+
+            <!-- Theme Preset Button -->
+            <button type="button" id="openThemeModalBtn" class="btn btn-ghost btn-sm btn-pill" title="Personalizar Cores">
+              🎨 Cores
+            </button>
+
+            <!-- Export / Backup Button -->
+            <button type="button" id="openExportModalBtn" class="btn btn-ghost btn-sm btn-pill" title="Exportar ou Importar dados JSON">
+              📤 Exportar
+            </button>
+
+            <!-- User Profile & Logout Button -->
+            <div class="user-auth-badge" id="userAuthBadge">
+              <span class="user-avatar-circle" id="headerUserAvatar">A</span>
+              <span class="user-email-text" id="headerUserEmail">admin@kanban.com</span>
+              <button type="button" id="logoutBtn" class="btn btn-ghost btn-sm" title="Sair da Conta (Logout)">
+                🚪 Logout
+              </button>
+            </div>
+
+            <!-- Primary New Task Button -->
+            <button type="button" id="openNewTaskModalBtn" class="btn btn-primary btn-pill">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              <span>+ Nova Tarefa</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- SUB-HEADER WITH KANBAN METRICS & BOARD ACTIONS (MATCHING IMAGE 2) -->
+        <div class="welcome-banner kanban-subheader">
+          <div class="welcome-left board-title-wrapper">
+            <h1 class="welcome-title">
+              <span id="boardTitleDisplay">🚀 Projeto Principal</span>
+              <button type="button" id="editBoardBtn" class="icon-btn-sm inline-edit-btn" title="Editar Nome do Quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+              </button>
+            </h1>
+            <!-- Stats Pills from Image 2 -->
+            <div class="sub-header-stats">
+              <span class="stat-pill" id="totalTasksStat">📋 <span class="stat-value">0 tarefas</span></span>
+              <span class="stat-pill stat-warning" id="overdueTasksStat">⚠️ <span class="stat-value">0 atrasadas</span></span>
+              <span class="stat-pill stat-success" id="completedTasksStat">📊 <span class="stat-value">0% concluídas</span></span>
+            </div>
+          </div>
+
+          <div class="welcome-actions">
+            <!-- New Column Button -->
+            <button type="button" id="openNewColumnModalBtn" class="btn btn-secondary btn-sm btn-pill">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              + Nova Coluna
+            </button>
+
+            <!-- Delete Board Button -->
+            <button type="button" id="deleteBoardBtn" class="btn btn-danger-soft btn-sm btn-pill" title="Excluir Quadro Ativo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- MAIN KANBAN CANVAS -->
+        <main class="kanban-canvas" id="kanbanCanvas">
+          <!-- Columns rendered dynamically by JavaScript -->
+        </main>
+
+        <!-- MAIN DASHBOARD CANVAS (VISUAL HEATMAP, PROJECTS & DELIVERIES) -->
+        <div class="dashboard-canvas hidden" id="dashboardCanvas">
+          
+          <!-- PROJECTS QUICK ACCESS ROW (MEUS PROJETOS) -->
+          <div class="dash-section-header">
+            <div>
+              <h2 class="dash-section-title">📁 Meus Projetos & Quadros</h2>
+              <span class="dash-section-subtitle">Acesso rápido e status de progresso dos seus projetos</span>
+            </div>
+            <button type="button" id="dashCreateProjectBtn" class="btn btn-primary btn-sm btn-pill">+ Novo Projeto</button>
+          </div>
+
+          <!-- DYNAMIC PROJECTS GRID -->
+          <div class="projects-cards-grid" id="dashProjectsGrid">
+            <!-- Loaded dynamically by JS -->
+          </div>
+
+          <!-- DASHBOARD EXECUTIVE 3-COLUMN MAIN GRID (MATCHING REFERENCE IMAGE 2 EXACTLY) -->
+          <div class="dash-executive-grid" id="dashExecutiveGrid" style="margin-top: 1.25rem;">
+            
+            <!-- COLUMN 1: MEUS PROJETOS (MATCHING IMAGE 2 LEFT COLUMN) -->
+            <div class="dash-col-projects">
+              <div class="q-card" style="height: 100%;">
+                <div class="q-card-header" style="margin-bottom: 0.75rem;">
+                  <span class="q-card-title">Meus Projetos</span>
+                  <button type="button" class="btn btn-ghost btn-sm btn-pill" id="dashNewProjectBtn">+ Criar</button>
+                </div>
+                <div class="projects-cards-stack" id="dashProjectsGrid">
+                  <!-- Loaded dynamically by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- COLUMN 2: PAINEL VISUAL & FLUXO (MATCHING IMAGE 2 MIDDLE COLUMN) -->
+            <div class="dash-col-visual">
+              
+              <!-- HEXBIN CHART MATRIX CARD (MATCHING REFERENCE IMAGE 2) -->
+              <div class="q-card hexmap-card hexmap-dark-panel">
+                <div class="hexmap-dark-header">
+                  <div class="hexmap-title-row">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <h3 class="hexmap-dark-title">Matriz Hexbin por Projetos</h3>
+                      <span class="hexmap-status-pill"><span class="status-green-dot"></span> Ao Vivo</span>
+                    </div>
+                    <div class="hexbin-time-switcher" id="hexbinTimeSwitcher">
+                      <button type="button" class="hexbin-tab active" data-period="month">Mês</button>
+                      <button type="button" class="hexbin-tab" data-period="week">Semana</button>
+                      <button type="button" class="hexbin-tab" data-period="day">Dia</button>
+                    </div>
+                  </div>
+                  <div class="hexmap-submeta-row" style="margin-top: 0.25rem;">
+                    <span>📊 Desempenho e Densidade por Categoria de Projeto</span>
+                  </div>
+                </div>
+
+                <!-- MONTHS HEADER ROW -->
+                <div class="hexbin-months-header">
+                  <div class="hexbin-left-spacer"></div>
+                  <div class="hexbin-months-grid">
+                    <span>Jan</span><span>Fev</span><span>Mar</span><span>Abr</span><span>Mai</span><span>Jun</span>
+                    <span>Jul</span><span>Ago</span><span>Set</span><span>Out</span><span>Nov</span><span>Dez</span>
+                  </div>
+                </div>
+
+                <!-- HEXBIN MATRIX WRAPPER BY PROJECT CATEGORY -->
+                <div class="hexbin-matrix-wrapper" id="hexbinMatrixWrapper">
+                  <!-- Rendered dynamically by JS -->
+                </div>
+
+                <!-- FLOATING TOOLTIP -->
+                <div class="hex-tooltip hidden" id="hexTooltip">
+                  <div class="tooltip-title" id="tooltipTitle">Projeto Principal • Julho</div>
+                  <div class="tooltip-val" id="tooltipVal">86% de Conclusão</div>
+                </div>
+              </div>
+
+              <!-- FLUXO DE TRABALHO -->
+              <div class="q-card" style="margin-top: 1.25rem;">
+                <div class="q-card-header">
+                  <span class="q-card-title">Fluxo de Trabalho por Coluna</span>
+                  <span class="q-badge-emerald" id="dashCompletionRatePct">0%</span>
+                </div>
+                <div class="dash-bars-list" id="dashColumnsList" style="margin-top: 0.5rem;">
+                  <!-- Loaded dynamically by JS -->
+                </div>
+              </div>
+
+            </div>
+
+            <!-- COLUMN 3: CALENDÁRIO INTELIGENTE & ENTREGAS (MATCHING IMAGE 2 RIGHT COLUMN) -->
+            <div class="dash-col-calendar">
+              
+              <!-- CALENDAR WIDGET MATCHING IMAGE 2 EXACTLY -->
+              <div class="q-card modern-calendar-card" id="smartCalendarCard">
+                <div class="modern-cal-header-bar">
+                  <h3 class="modern-cal-month-title" id="calMonthTitle">Fevereiro 2026</h3>
+                  <div class="modern-cal-nav-buttons">
+                    <button type="button" class="modern-today-btn" id="calTodayBadge" title="Ir para Data Atual">Hoje</button>
+                    <button type="button" class="modern-nav-circle-btn" id="calPrevMonthBtn" title="Mês Anterior">&lt;</button>
+                    <button type="button" class="modern-nav-circle-btn" id="calNextMonthBtn" title="Próximo Mês">&gt;</button>
+                  </div>
+                </div>
+
+                <div class="modern-cal-weekdays-row">
+                  <span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span>
+                </div>
+
+                <div class="modern-cal-days-container" id="calDaysGrid">
+                  <!-- Loaded dynamically by JS -->
+                </div>
+
+                <!-- ENTREGAS DO DIA LIST BELOW CALENDAR -->
+                <div class="modern-cal-event-sidebar" style="margin-top: 1rem;">
+                  <div class="event-sidebar-header">
+                    <div>
+                      <h4 class="event-sidebar-title" id="selectedDayTitle">Entregas do Dia</h4>
+                      <span class="event-sidebar-subtitle">Vencimentos e tarefas agendadas</span>
+                    </div>
+                    <span class="event-sidebar-count-badge" id="selectedDayCountBadge">0</span>
+                  </div>
+
+                  <div class="event-cards-scroll-container" id="selectedDayTasksList">
+                    <!-- Loaded dynamically by JS -->
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- BOTTOM ROW: RECENT TASKS & ACTIVITY HISTORY TABLE -->
+          <div class="quixotic-grid-bottom" style="margin-top: 1.25rem;">
+            <div class="q-card history-card">
+              <div class="q-card-header">
+                <div>
+                  <h3 class="q-card-title">Histórico de Tarefas & Entregas Recentes</h3>
+                  <span class="q-card-subtitle">Últimas atualizações no quadro (Clique para ver/editar)</span>
+                </div>
+                <button type="button" id="refreshHistoryBtn" class="emerald-icon-btn" title="Atualizar Lista">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+                </button>
+              </div>
+
+              <!-- HISTORY TABLE -->
+              <div class="table-responsive">
+                <table class="q-table">
+                  <thead>
+                    <tr>
+                      <th>Nome da Tarefa</th>
+                      <th>Data de Criação</th>
+                      <th>Prazo Limite</th>
+                      <th>Coluna / Status</th>
+                      <th>Prioridade</th>
+                    </tr>
+                  </thead>
+                  <tbody id="qHistoryTableBody">
+                    <!-- Loaded dynamically by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- TASK MODAL (Create & Edit) -->
+  <div class="modal-backdrop hidden" id="taskModal">
+    <div class="modal-dialog modal-md">
+      <div class="modal-header">
+        <h3 id="taskModalTitle" class="modal-title">Nova Tarefa</h3>
+        <button type="button" class="close-modal-btn" data-close="taskModal">&times;</button>
+      </div>
+      <form id="taskForm" class="modal-body">
+        <input type="hidden" id="taskIdInput" value="">
+
+        <div class="form-group">
+          <label for="taskTitleInput" class="form-label">Título da Tarefa <span class="required">*</span></label>
+          <input type="text" id="taskTitleInput" class="form-control" placeholder="Ex: Criar componente de Login"
+            required maxlength="100">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="taskColumnSelect" class="form-label">Coluna</label>
+            <select id="taskColumnSelect" class="form-control styled-select">
+              <!-- Columns loaded dynamically -->
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label for="taskPrioritySelect" class="form-label">Prioridade</label>
+            <select id="taskPrioritySelect" class="form-control styled-select">
+              <option value="low">🟢 Baixa</option>
+              <option value="medium" selected>🟡 Média</option>
+              <option value="high">🟠 Alta</option>
+              <option value="urgent">🔴 Urgente</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="taskDueDateInput" class="form-label">Prazo (Data / Hora Limite)</label>
+            <input type="datetime-local" id="taskDueDateInput" class="form-control">
+          </div>
+          <div class="form-group col-6">
+            <label for="taskTagsInput" class="form-label">Tags / Categoria (separadas por vírgula)</label>
+            <input type="text" id="taskTagsInput" class="form-control" placeholder="Ex: frontend, bug, api">
+          </div>
+        </div>
+
+        <div class="form-group description-group">
+          <div class="label-with-action">
+            <label for="taskDescInput" class="form-label">Descrição</label>
+            <button type="button" id="emojiPickerBtn" class="emoji-trigger-btn" title="Inserir Emoji">
+              <span>😀</span> Escolher Emoji
+            </button>
+          </div>
+          <textarea id="taskDescInput" class="form-control" rows="4"
+            placeholder="Descreva os detalhes da tarefa... Use o botão de emoji acima!"></textarea>
+
+          <!-- Emoji Selector Popover -->
+          <div class="emoji-popover hidden" id="emojiPopover">
+            <div class="emoji-popover-header">
+              <input type="text" id="emojiSearchInput" placeholder="Buscar emoji..." class="emoji-search-input">
+              <button type="button" class="emoji-popover-close" id="closeEmojiPopoverBtn">&times;</button>
+            </div>
+            <div class="emoji-categories" id="emojiCategories">
+              <button type="button" class="emoji-cat-tab active" data-cat="smileys" title="Sorrisos">😀</button>
+              <button type="button" class="emoji-cat-tab" data-cat="gestures" title="Gestos">👍</button>
+              <button type="button" class="emoji-cat-tab" data-cat="work" title="Trabalho">💼</button>
+              <button type="button" class="emoji-cat-tab" data-cat="symbols" title="Símbolos">🔥</button>
+              <button type="button" class="emoji-cat-tab" data-cat="objects" title="Objetos">🎯</button>
+            </div>
+            <div class="emoji-grid" id="emojiGrid">
+              <!-- Emoji items loaded via JS -->
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close="taskModal" onclick="closeModal && closeModal('taskModal')">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="saveTaskBtn">Salvar Tarefa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- NEW/EDIT BOARD MODAL -->
+  <div class="modal-backdrop hidden" id="boardModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h3 id="boardModalTitle" class="modal-title">Novo Quadro</h3>
+        <button type="button" class="close-modal-btn" data-close="boardModal">&times;</button>
+      </div>
+      <form id="boardForm" class="modal-body">
+        <input type="hidden" id="boardIdInput" value="">
+        <div class="form-group">
+          <label for="boardNameInput" class="form-label">Nome do Quadro <span class="required">*</span></label>
+          <input type="text" id="boardNameInput" class="form-control" placeholder="Ex: Projeto Redesign 2026" required
+            maxlength="50">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close="boardModal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar Quadro</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- NEW/EDIT COLUMN MODAL -->
+  <div class="modal-backdrop hidden" id="columnModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h3 id="columnModalTitle" class="modal-title">Nova Coluna</h3>
+        <button type="button" class="close-modal-btn" data-close="columnModal">&times;</button>
+      </div>
+      <form id="columnForm" class="modal-body">
+        <input type="hidden" id="columnIdInput" value="">
+        <div class="form-group">
+          <label for="columnNameInput" class="form-label">Nome da Coluna <span class="required">*</span></label>
+          <input type="text" id="columnNameInput" class="form-control" placeholder="Ex: Em Validação" required
+            maxlength="30">
+        </div>
+        <div class="form-group">
+          <label for="columnColorInput" class="form-label">Cor de Destaque da Coluna</label>
+          <div class="color-picker-group">
+            <input type="color" id="columnColorInput" class="color-picker-input" value="#6c5ce7">
+            <span class="color-value-preview" id="columnColorPreview">#6c5ce7</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close="columnModal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar Coluna</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- THEME & BACKGROUND CUSTOMIZATION MODAL -->
+  <div class="modal-backdrop hidden" id="themeModal">
+    <div class="modal-dialog modal-md">
+      <div class="modal-header">
+        <h3 class="modal-title">🎨 Personalizar Cores & Temas</h3>
+        <button type="button" class="close-modal-btn" data-close="themeModal" title="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="theme-section">
+          <h4>Temas Predefinidos & Meus Temas</h4>
+          <div class="theme-presets-grid" id="themePresetsGrid">
+            <!-- Preset cards and user custom themes rendered dynamically in app.js -->
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.25rem 0;">
+
+        <!-- CUSTOM GRADIENT THEME CREATOR (UP TO 3 COLORS) -->
+        <div class="theme-section custom-theme-creator">
+          <h4>✨ Criar Seu Próprio Tema Mesclado (Até 3 Cores)</h4>
+          <p class="text-muted" style="font-size: 0.8rem; margin-bottom: 0.75rem;">
+            Escolha um nome e mescle até 3 cores com o ângulo desejado para criar seu tema exclusivo:
+          </p>
+
+          <div class="form-group" style="margin-bottom: 0.85rem;">
+            <label for="customThemeNameInput" class="form-label">Nome do Tema</label>
+            <input type="text" id="customThemeNameInput" class="form-control" placeholder="Ex: Meu Gradiente Aurora 🌌" maxlength="30">
+          </div>
+
+          <div class="custom-gradient-pickers">
+            <div class="picker-item">
+              <label class="form-label">Cor 1</label>
+              <div class="color-picker-group">
+                <input type="color" id="gradientColor1" class="color-picker-input" value="#0f172a">
+                <input type="text" id="gradientHex1" class="form-control hex-input" value="#0f172a">
+              </div>
+            </div>
+            <div class="picker-item">
+              <label class="form-label">Cor 2</label>
+              <div class="color-picker-group">
+                <input type="color" id="gradientColor2" class="color-picker-input" value="#6c5ce7">
+                <input type="text" id="gradientHex2" class="form-control hex-input" value="#6c5ce7">
+              </div>
+            </div>
+            <div class="picker-item">
+              <label class="form-label">Cor 3</label>
+              <div class="color-picker-group">
+                <input type="color" id="gradientColor3" class="color-picker-input" value="#00cec9">
+                <input type="text" id="gradientHex3" class="form-control hex-input" value="#00cec9">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 0.85rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label for="gradientAngle" class="form-label">Ângulo do Gradiente</label>
+              <span id="gradientAngleVal" class="badge-tag" style="font-weight: 700;">135°</span>
+            </div>
+            <input type="range" id="gradientAngle" min="0" max="360" step="15" value="135" style="width: 100%; cursor: pointer;">
+          </div>
+
+          <!-- REAL-TIME GRADIENT PREVIEW CARD -->
+          <div class="gradient-preview-container" style="margin-top: 1rem;">
+            <span class="form-label" style="font-size: 0.78rem; font-weight: 600;">Pré-visualização em Tempo Real:</span>
+            <div id="customThemePreviewCard" class="custom-theme-preview-box">
+              <span id="previewThemeTitle">🌌 Meu Gradiente Customizado</span>
+            </div>
+          </div>
+
+          <button type="button" id="saveCustomThemeBtn" class="btn btn-primary btn-block" style="margin-top: 1rem;">
+            🎨 Criar e Aplicar Meu Tema
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" data-close="themeModal">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPORT / IMPORT MODAL -->
+  <div class="modal-backdrop hidden" id="exportModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title">Backup de Dados JSON</h3>
+        <button type="button" class="close-modal-btn" data-close="exportModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">Baixe um arquivo kanban_data.json com todos os seus quadros e tarefas ou restaure um
+          backup anterior.</p>
+        <div class="backup-actions">
+          <button type="button" id="exportDataBtn" class="btn btn-secondary btn-block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" x2="12" y1="15" y2="3" />
+            </svg>
+            Exportar JSON
+          </button>
+
+          <label for="importFileInput" class="btn btn-outline btn-block file-input-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" x2="12" y1="3" y2="15" />
+            </svg>
+            Importar JSON
+          </label>
+          <input type="file" id="importFileInput" accept=".json" class="hidden">
+
+          <button type="button" id="resetDataBtn" class="btn btn-danger-outline btn-block" style="margin-top: 10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            Restaurar Dados Padrão
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRM ACTION MODAL -->
+  <div class="modal-backdrop hidden" id="confirmModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h3 id="confirmModalTitle" class="modal-title">Confirmar Ação</h3>
+        <button type="button" class="close-modal-btn" data-close="confirmModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmModalText">Tem certeza que deseja realizar esta ação?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" data-close="confirmModal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmModalOkBtn">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATION OVERLAY MODAL (LOGIN & REGISTER) -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <div class="auth-logo">
+          <div class="logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="3"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/></svg>
+          </div>
+          <span class="logo-text">Kanban<span class="highlight">Flow</span></span>
+        </div>
+        <p class="auth-subtitle">Acesse ou crie sua conta para gerenciar seus quadros com isolamento total</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab-btn active" id="authTabLogin">Entrar (Login)</button>
+        <button type="button" class="auth-tab-btn" id="authTabRegister">Criar Conta</button>
+      </div>
+
+      <!-- FORM LOGIN -->
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <label for="loginEmail">E-mail</label>
+          <input type="email" id="loginEmail" placeholder="seu@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Senha</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1.25rem;">Entrar no KanbanFlow</button>
+      </form>
+
+      <!-- FORM REGISTER -->
+      <form id="registerForm" class="auth-form hidden">
+        <div class="form-group">
+          <label for="regName">Nome Completo</label>
+          <input type="text" id="regName" placeholder="Seu Nome" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="regEmail">E-mail</label>
+          <input type="email" id="regEmail" placeholder="seu@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Senha</label>
+          <input type="password" id="regPassword" placeholder="Crie uma senha segura (mínimo 6 caracteres)" required minlength="6" autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1.25rem;">Criar Conta e Acessar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript Entry Point -->
+  <script src="app.js"></script>
+</body>
+
+</html>
